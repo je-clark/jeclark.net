@@ -1,0 +1,30 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Josh Clark'
+theme= 'digitalgarden'
+
+[menu]
+[[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 1
+[[menu.main]]
+    name = 'Content'
+    params.header = true
+    weight = 2
+[[menu.main]]
+    name = 'All Articles'
+    url = '/articles'
+    weight = 3
+[[menu.main]]
+    name = 'Articles by Topic'
+    params.header = true
+    weight = 3
+[[menu.main]]
+    name = 'Hello'
+    url = '/tags/hello'
+    weight = 4
+[[menu.main]]
+    name = 'Wireshark'
+    url = '/tags/wireshark'
+    weight = 4
