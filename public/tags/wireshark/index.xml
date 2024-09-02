@@ -6,21 +6,14 @@
     <description>Recent content in Wireshark on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Aug 2024 11:13:55 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2024 10:39:49 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Wireshark Hello</title>
-      <link>http://localhost:1313/articles/wireshark-hello/</link>
-      <pubDate>Sun, 25 Aug 2024 11:13:55 -0700</pubDate>
-      <guid>http://localhost:1313/articles/wireshark-hello/</guid>
-      <description>whaddup</description>
-    </item>
-    <item>
-      <title>Hello World</title>
-      <link>http://localhost:1313/articles/hello-world/</link>
-      <pubDate>Sun, 25 Aug 2024 10:45:11 -0700</pubDate>
-      <guid>http://localhost:1313/articles/hello-world/</guid>
-      <description>Hi!</description>
+      <title>The Pattern: Identifying Requests and Responses in Encrypted Traffic</title>
+      <link>http://localhost:1313/articles/the-pattern/</link>
+      <pubDate>Mon, 02 Sep 2024 10:39:49 -0400</pubDate>
+      <guid>http://localhost:1313/articles/the-pattern/</guid>
+      <description>Introduction Advances in cybersecurity frequently mean that it&amp;rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&amp;rsquo;t see everything we want to.&#xA;When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.</description>
     </item>
   </channel>
 </rss>
