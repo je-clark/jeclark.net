@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+    An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again - Josh Clark
+  </title>
+
+  <meta name="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet." /><meta name="generator" content="Hugo 0.127.0">
+
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+
+  
+  
+
+  <meta property="og:url" content="http://localhost:1313/articles/tcp-initcwnd/">
+  <meta property="og:site_name" content="Josh Clark">
+  <meta property="og:title" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
+  <meta property="og:description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2024-09-02T11:07:16-04:00">
+    <meta property="article:modified_time" content="2024-09-02T11:07:16-04:00">
+    <meta property="article:tag" content="Performance">
+
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
+  <meta name="twitter:description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+
+
+  
+  <meta itemprop="name" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
+  <meta itemprop="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+  <meta itemprop="datePublished" content="2024-09-02T11:07:16-04:00">
+  <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
+  <meta itemprop="wordCount" content="1445">
+  <meta itemprop="keywords" content="Performance">
+
+  
+  <meta itemprop="name" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
+  <meta itemprop="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+  <meta itemprop="datePublished" content="2024-09-02T11:07:16-04:00">
+  <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
+  <meta itemprop="wordCount" content="1445">
+  <meta itemprop="keywords" content="Performance">
+</head>
+<body class="flex relative h-full min-h-screen"><aside
+  class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:basis-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar flex-shrink-0">
+  <p class="font-bold mb-5 flex items-center gap-2">
+    <button aria-label="Close sidebar"
+      class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+</svg></button>
+    <a href="http://localhost:1313/" class="px-2">
+      <span>Josh Clark</span>
+    </a>
+    <button aria-label="Toggle dark mode"
+      class="dark-mode-toggle p-2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <circle cx="12" cy="12" r="4" />
+  <path d="M3 12h1M12 3v1M20 12h1M12 20v1M5.6 5.6l.7 .7M18.4 5.6l-.7 .7M17.7 17.7l.7 .7M6.3 17.7l-.7 .7" />
+</svg></button>
+  </p>
+
+  
+  <ul class="list-none flex flex-col gap-1">
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/" >
+        <span>Home</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Content</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles" >
+        <span>All Articles</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Articles by Topic</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/other" >
+        <span>Other</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/performance" >
+        <span>Performance</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/troubleshooting" >
+        <span>Troubleshooting</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/wireshark" >
+        <span>Wireshark</span>
+        
+      </a>
+    </li>
+    
+  </ul>
+
+  <div class="flex-1"></div>
+
+  
+
+  <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="https://github.com/je-clark" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">GitHub</span>
+        
+        <span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round">
+  <path
+    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg></span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="https://www.linkedin.com/in/je-clark/" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">LinkedIn</span>
+        
+        <span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+  <rect x="2" y="9" width="4" height="12" />
+  <circle cx="4" cy="4" r="2" />
+</svg></span>
+        
+      </a>
+    </li>
+    
+  </ul>
+</aside>
+
+<div
+  class="fixed bg-slate-700 bg-opacity-5 transition duration-200 ease-in-out inset-0 z-10 pointer-events-auto md:hidden left-0 top-0 w-full h-full hidden menu-overlay">
+</div>
+
+<button aria-label="Toggle Sidebar"
+  class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="4" y1="6" x2="20" y2="6" />
+  <line x1="4" y1="12" x2="20" y2="12" />
+  <line x1="4" y1="18" x2="16" y2="18" />
+</svg></button>
+
+
+
+
+
+
+<div class="flex flex-1 h-screen relative w-full min-w-0">
+
+  <section
+    class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
+  lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
+    
+    
+    <a href="http://localhost:1313/articles/">
+      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
+    </a><div class="space-y-2.5">
+      
+      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
+        href="/articles/tcp-initcwnd/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h3>
+        <div
+          class="text-sm  text-slate-400  line-clamp-2">
+          Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles/the-pattern/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          Introduction Advances in cybersecurity frequently mean that it&rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&rsquo;t see everything we want to.
+When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles/troubleshoot-like-a-doctor-1/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: Differential Diagnosis</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          Introduction The IT field is terrible at teaching people how to troubleshoot. Sure, if you got a CompTIA A+ or a CCNA, there were modules that talked about how to solve problems, but how much time did you actually spend on those modules? The CCNA course I took spent all of 5 minutes on it, with the message &ldquo;there&rsquo;s probably going to be a question that will ask what order these steps come in.
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles/converting-flask-to-lambda/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Converting Flask to Lambda</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:
+        </div>
+      </a>
+      </div>
+    </section>
+
+  <div class="overflow-y-auto h-screen w-full">
+    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+
+      
+      <h1 class="!mb-2">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h1>
+
+	  
+      <p class="text-sm text-slate-500 !mb-8"> Published September 2, 2024
+		
+	  </p>
+      
+
+      
+
+      <h2 id="introduction">Introduction</h2>
+<p>Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published <a href="https://research.google/pubs/an-argument-for-increasing-tcps-initial-congestion-window/"  target="_blank" rel="noopener" >one of my favorite papers</a>, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an <a href="https://www.rfc-editor.org/rfc/rfc6928"  target="_blank" rel="noopener" >RFC filed with the IETF</a>, and eventually became an internet standard.</p>
+<p>I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.</p>
+<h2 id="tcp-initial-congestion-window">TCP Initial Congestion Window</h2>
+<p>TCP uses an idea called the sliding window to manage how much data is in transit on the network at any given time. The receiver manages a receive window that tells the sender how much data it is willing to receive at once. In modern TCP, the receive window is set very high and only reduces if the receiver is running out of capacity. The goal is to ensure the receiver is never limiting the data transfer speed with a low window.</p>
+<p>At the same time, the sender manages something called a congestion window. This value is the number of packets the sender can send at one time before it needs to pause and wait for a response from the receiver. There are various congestion control algorithms that adjust the congestion window, but the general goal of all of them is to ramp up transmission until it&rsquo;s as fast as possible without being affected by congestion or packet loss somewhere in the network.</p>
+<p>These congestion control algorithms require a seed value at the start of a transmission known as the initial congestion window. This value determines how much data can be sent at the beginning of a connection.</p>
+<p>In traditional TCP (pre-2010), that value was set anywhere between 1 and 3, depending on OS and software. The predominant congestion control algorithm at that time, TCP New Reno, would increase the congestion window by an initial congestion window for every round trip with no packet loss. So a successful connection with no loss would look something like this:</p>
+<ol>
+<li>Initial congestion window: 2. 2 packets sent (3 KB).</li>
+<li>Congestion window: 4. 6 KB sent.</li>
+<li>Congestion window: 6. 9 KB sent.</li>
+</ol>
+<p>And so on&hellip;</p>
+<p>If that connection runs into some packet loss, that congestion window is then cut in half and has to slowly recover. Eventually, in a long connection, the congestion window will settle in to a relatively narrow set of values, and this steady state condition is called convergence.</p>
+<p>This scheme makes sense for the network traffic TCP was designed for. Large file transfers are minimally affected by this initial ramp up period. Depending on the round trip time of the connection, convergence can occur within 1 or 2 seconds, which isn&rsquo;t too long for a file transfer that&rsquo;s expected to take several minutes.</p>
+<p>However, this convergence period has an adverse affect on the predominant communication on the internet: web page loads and API calls.</p>
+<h2 id="http-over-tcp">HTTP over TCP</h2>
+<p>Both web page loads and API calls use HTTP(s), and in the late 2000&rsquo;s, they always used TCP as the transport layer.</p>
+<p>A typical HTTP request looks like this on the network:</p>
+<ol>
+<li>TCP connection is established</li>
+<li>TLS encryption is established</li>
+<li>Client sends an HTTP request (anywhere from 20 - 8000 bytes)</li>
+<li>Server sends an HTTP response (anywhere from 100 bytes - 10 MB)</li>
+</ol>
+<p>Crucially, the statistical distribution of both request and response sizes skews towards the higher end of those ranges. I&rsquo;m certainly not the first person to say that the internet is bloated.</p>
+<p>When TCP&rsquo;s initial congestion window is set to something like 2, the largest request or response that can be sent in a single round trip is 3 KB. And in 2011, that was only about 40% of responses on the internet. That means 60% of assets that had to load for a web page to render had to wait at least an extra round trip to fully download. For typical internet round trips, that&rsquo;s an extra 30ms for each of the 60+ assets that might be more than 3 KB. That means this web page will take an extra 1.2 seconds to load.</p>
+<h2 id="googles-original-recommendation">Google&rsquo;s original recommendation</h2>
+<p>Because of that data, Google chose to increase the initial congestion window on their infrastructure to 10, a round trip data cutoff of 15 KB. Their calculations showed that this would allow nearly 85% of assets being served to users to load in a single round trip.</p>
+<p>However, this doesn&rsquo;t hold true on the 2020s internet. The use of both Javascript and images has skyrocketed, so the initial page loads on websites on modern websites consist of hundreds of assets, most of them 100s of KB in size. The increased bloat of the modern internet is causing us to run into the same problem again.</p>
+<h2 id="what-should-we-do-now">What Should We Do Now?</h2>
+<p>The challenge we face now is that just increasing the initial congestion window by another order of magnitude could be counterproductive. If web servers all over the internet start blasting out 100s of packets at a time, we will just be causing the congestion and packet loss that TCP tries to avoid. Just about everywhere, storage is cheap, but bandwidth is expensive. Because of that, there are a lot of network devices out there connected to low bandwidth links with lots of storage. This means that these devices have deep buffers. A packet trying to exit a low bandwidth link could be stuck waiting in that buffer for a long time before it makes it back onto the network.</p>
+<p>Imagine a home network setup where the internet upload speed is 10 Mbps, but the connection between the router and someone&rsquo;s computer is 1 Gbps. If the computer tries to send something at 1 Gbps, those packets are just going to back up on the router while they come out the other end at 10 Mbps.</p>
+<p>This problem is called bufferbloat, and it&rsquo;s one of the main reasons a slow increase of the congestion window exists.</p>
+<p>Luckily, another Google invention comes to the rescue. Google developed a congestion control algorithm called <a href="https://dl.acm.org/doi/pdf/10.1145/3009824"  target="_blank" rel="noopener" >BBR</a> that works completely differently from every other algorithm in use. Most algorithms look for signs of packet loss as a signal to reduce the congestion window. In developing BBR, Google makes the assumption that packet loss is transient. The existence of packet loss right now is not an accurate predictor for packet loss 20 ms from now. However, congestion due to bufferbloat is much more predictable.</p>
+<p>So BBR mostly ignores packet loss in favor for closely monitoring signs of congestion. When packets are stuck in a buffer in some network device somewhere, they take longer to get to the destination. That means the responses to those packets will also be delayed. BBR looks at the variance in round trip time in a connection and uses that to identify congestion. If there is congestion, then the congestion window is reduced.</p>
+<p>So, to make TCP performant for the modern internet, we need to do a couple things:</p>
+<ul>
+<li>Increase the initial congestion window to a higher reasonable number (my sense is that number should be between 20 and 40)</li>
+<li>Adopt BBR as the default congestion control algorithm for web servers and API servers.</li>
+</ul>
+<h2 id="what-about-quic">What about QUIC?</h2>
+<p>I&rsquo;ll admit there&rsquo;s some incongruity in my post here. Why am I making it instead of Google?</p>
+<p>The answer is pretty simple: Google has largely pivoted away from TCP. Google also developed QUIC, which is HTTP over UDP. There&rsquo;s no longer any congestion window to deal with, so entire messages can be sent at once. And most of the time, if there&rsquo;s any packet loss, it&rsquo;s faster to retransmit the entire message instead of waiting for TCP to start transmitting at a decent rate.</p>
+<p>However, I don&rsquo;t think that QUIC means we can ignore TCP tuning. For one, enterprises largely disable QUIC and force websites like Google to downgrade back to TCP. This is because there&rsquo;s only a single firewall vendor that can decrypt and inspect QUIC traffic (Go Fortinet!). Every other vendor provides a setting to disable QUIC support on the entire network. And second, there&rsquo;s always legacy equipment that doesn&rsquo;t support modern protocols. By tuning TCP better, we can make the internet a better experience for those legacy devices as well.</p>
+<h2 id="summary">Summary</h2>
+<p>The internet is ready for another increase in TCP&rsquo;s initial congestion window as long as we can do it carefully and with the help of TCP BBR as a congestion control protocol.</p>
+<p>I&rsquo;m going to continue investigating and talking about the most performant TCP settings for the modern internet, and I hope I can drive some adoption to make the modern web faster for everyone.</p>
+
+    </article>
+  </div>
+
+</div>
+
+
+  
+<script type="text/javascript" src="/main.js" defer></script>
+
+
+  
+
+
+</body>
+
+</html>

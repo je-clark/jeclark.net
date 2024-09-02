@@ -8,7 +8,7 @@
   <link rel="icon" href="/favicon.ico">
 
   <title>
-    Articles - Josh Clark
+    Performance - Josh Clark
   </title>
 
   <meta name="description" content="" /><meta name="generator" content="Hugo 0.127.0">
@@ -18,24 +18,24 @@
   
   
 
-  <meta property="og:url" content="http://localhost:1313/articles/">
+  <meta property="og:url" content="http://localhost:1313/tags/performance/">
   <meta property="og:site_name" content="Josh Clark">
-  <meta property="og:title" content="Articles">
+  <meta property="og:title" content="Performance">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Articles">
+  <meta name="twitter:title" content="Performance">
 
 
   
-  <meta itemprop="name" content="Articles">
+  <meta itemprop="name" content="Performance">
   <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
 
   
-  <meta itemprop="name" content="Articles">
+  <meta itemprop="name" content="Performance">
   <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
 </head>
 <body class="flex relative h-full min-h-screen"><aside
@@ -80,7 +80,7 @@
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  bg-slate-800 text-white dark:bg-slate-50 dark:text-slate-800 dark:selection:bg-slate-400 "
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
         href="/articles" >
         <span>All Articles</span>
         
@@ -104,7 +104,7 @@
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  bg-slate-800 text-white dark:bg-slate-50 dark:text-slate-800 dark:selection:bg-slate-400 "
         href="/tags/performance" >
         <span>Performance</span>
         
@@ -181,63 +181,33 @@
 </svg></button>
 
 
-<div class="flex flex-1 h-screen relative w-full min-w-0">
-
-  <section
-    class="w-full h-full md:min-w-[400px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
-    <a href="http://localhost:1313/articles/">
-      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
-    </a><div class="space-y-2.5">
-      <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="/articles/tcp-initcwnd/">
-
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window Again</h3>
-        <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-          Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+  <div class="flex flex-1 h-screen relative w-full min-w-0">
+  
+    <section
+      class="w-full h-full md:min-w-[400px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
+      <a href="http://localhost:1313/tags/performance/">
+        <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Performance</h2>
+      </a><div class="space-y-2.5">
+        <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="/articles/tcp-initcwnd/">
+  
+          
+          
+          <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window Again</h3>
+          <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+            Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
 I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.
+          </div>
+        </a>
         </div>
-      </a>
-      <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="/articles/the-pattern/">
-
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h3>
-        <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-          Introduction Advances in cybersecurity frequently mean that it&rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&rsquo;t see everything we want to.
-When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.
-        </div>
-      </a>
-      <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="/articles/troubleshoot-like-a-doctor-1/">
-
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: Differential Diagnosis</h3>
-        <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-          Introduction The IT field is terrible at teaching people how to troubleshoot. Sure, if you got a CompTIA A+ or a CCNA, there were modules that talked about how to solve problems, but how much time did you actually spend on those modules? The CCNA course I took spent all of 5 minutes on it, with the message &ldquo;there&rsquo;s probably going to be a question that will ask what order these steps come in.
-        </div>
-      </a>
-      <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="/articles/converting-flask-to-lambda/">
-
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">Converting Flask to Lambda</h3>
-        <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-          I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
-Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
-Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:
-        </div>
-      </a>
-      </div>
-  </section>
-
-  <main class="hidden md:grid h-screen place-items-center flex-1">
-    <p class="text-center p-8 text-2xl text-slate-300 dark:text-slate-700">Select a post to read</p>
-  </main>
-
-</div>
-
-
+    </section>
+  
+    <main class="hidden md:grid h-screen place-items-center flex-1">
+      <p class="text-center p-8 text-2xl text-slate-300 dark:text-slate-700">Select a post to read</p>
+    </main>
+  
+  </div>
+  
+  
   
 <script type="text/javascript" src="/main.js" defer></script>
 

@@ -6,14 +6,21 @@
     <description>Recent content in Articles on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2024 10:39:49 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2024 11:07:16 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Argument for Increasing TCP&#39;s Initial Congestion Window Again</title>
+      <link>http://localhost:1313/articles/tcp-initcwnd/</link>
+      <pubDate>Mon, 02 Sep 2024 11:07:16 -0400</pubDate>
+      <guid>http://localhost:1313/articles/tcp-initcwnd/</guid>
+      <description>Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.&#xA;I think it&amp;rsquo;s time to revisit that paper and update Google&amp;rsquo;s recommendations for the modern Internet.</description>
+    </item>
     <item>
       <title>The Pattern: Identifying Requests and Responses in Encrypted Traffic</title>
       <link>http://localhost:1313/articles/the-pattern/</link>
       <pubDate>Mon, 02 Sep 2024 10:39:49 -0400</pubDate>
       <guid>http://localhost:1313/articles/the-pattern/</guid>
-      <description></description>
+      <description>Introduction Advances in cybersecurity frequently mean that it&amp;rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&amp;rsquo;t see everything we want to.&#xA;When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.</description>
     </item>
     <item>
       <title>Troubleshoot Like a Doctor: Differential Diagnosis</title>
