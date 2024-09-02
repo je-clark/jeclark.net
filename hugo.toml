@@ -21,10 +21,29 @@ theme= 'digitalgarden'
     params.header = true
     weight = 3
 [[menu.main]]
-    name = 'Hello'
-    url = '/tags/hello'
+    name = 'Troubleshooting'
+    url = '/tags/troubleshooting'
     weight = 4
 [[menu.main]]
     name = 'Wireshark'
     url = '/tags/wireshark'
     weight = 4
+[[menu.main]]
+    name = 'Performance'
+    url = '/tags/performance'
+    weight = 4
+[[menu.main]]
+    name = 'Other'
+    url = '/tags/other'
+    weight = 4
+
+
+
+[[menu.social]]
+    name = 'LinkedIn'
+    url = 'https://www.linkedin.com/in/je-clark/'
+    weight = 1
+[[menu.social]]
+    name = 'GitHub'
+    url = 'https://github.com/je-clark'
+    weight = 1 

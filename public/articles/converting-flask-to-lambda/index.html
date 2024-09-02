@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+    Converting Flask to Lambda - Josh Clark
+  </title>
+
+  <meta name="description" content="I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:" /><meta name="generator" content="Hugo 0.127.0">
+
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+
+  
+  
+
+  <meta property="og:url" content="http://localhost:1313/articles/converting-flask-to-lambda/">
+  <meta property="og:site_name" content="Josh Clark">
+  <meta property="og:title" content="Converting Flask to Lambda">
+  <meta property="og:description" content="I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2024-08-25T11:27:05-07:00">
+    <meta property="article:modified_time" content="2024-08-25T11:27:05-07:00">
+    <meta property="article:tag" content="Other">
+
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Converting Flask to Lambda">
+  <meta name="twitter:description" content="I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:">
+
+
+  
+  <meta itemprop="name" content="Converting Flask to Lambda">
+  <meta itemprop="description" content="I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:">
+  <meta itemprop="datePublished" content="2024-08-25T11:27:05-07:00">
+  <meta itemprop="dateModified" content="2024-08-25T11:27:05-07:00">
+  <meta itemprop="wordCount" content="855">
+  <meta itemprop="keywords" content="Other">
+
+  
+  <meta itemprop="name" content="Converting Flask to Lambda">
+  <meta itemprop="description" content="I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:">
+  <meta itemprop="datePublished" content="2024-08-25T11:27:05-07:00">
+  <meta itemprop="dateModified" content="2024-08-25T11:27:05-07:00">
+  <meta itemprop="wordCount" content="855">
+  <meta itemprop="keywords" content="Other">
+</head>
+<body class="flex relative h-full min-h-screen"><aside
+  class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:basis-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar flex-shrink-0">
+  <p class="font-bold mb-5 flex items-center gap-2">
+    <button aria-label="Close sidebar"
+      class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+</svg></button>
+    <a href="http://localhost:1313/" class="px-2">
+      <span>Josh Clark</span>
+    </a>
+    <button aria-label="Toggle dark mode"
+      class="dark-mode-toggle p-2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <circle cx="12" cy="12" r="4" />
+  <path d="M3 12h1M12 3v1M20 12h1M12 20v1M5.6 5.6l.7 .7M18.4 5.6l-.7 .7M17.7 17.7l.7 .7M6.3 17.7l-.7 .7" />
+</svg></button>
+  </p>
+
+  
+  <ul class="list-none flex flex-col gap-1">
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/" >
+        <span>Home</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Content</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles" >
+        <span>All Articles</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Articles by Topic</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/other" >
+        <span>Other</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/performance" >
+        <span>Performance</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/troubleshooting" >
+        <span>Troubleshooting</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/wireshark" >
+        <span>Wireshark</span>
+        
+      </a>
+    </li>
+    
+  </ul>
+
+  <div class="flex-1"></div>
+
+  
+
+  <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="https://github.com/je-clark" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">GitHub</span>
+        
+        <span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round">
+  <path
+    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg></span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="https://www.linkedin.com/in/je-clark/" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">LinkedIn</span>
+        
+        <span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+  <rect x="2" y="9" width="4" height="12" />
+  <circle cx="4" cy="4" r="2" />
+</svg></span>
+        
+      </a>
+    </li>
+    
+  </ul>
+</aside>
+
+<div
+  class="fixed bg-slate-700 bg-opacity-5 transition duration-200 ease-in-out inset-0 z-10 pointer-events-auto md:hidden left-0 top-0 w-full h-full hidden menu-overlay">
+</div>
+
+<button aria-label="Toggle Sidebar"
+  class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="4" y1="6" x2="20" y2="6" />
+  <line x1="4" y1="12" x2="20" y2="12" />
+  <line x1="4" y1="18" x2="16" y2="18" />
+</svg></button>
+
+
+
+
+
+
+<div class="flex flex-1 h-screen relative w-full min-w-0">
+
+  <section
+    class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
+  lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
+    
+    
+    <a href="http://localhost:1313/articles/">
+      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
+    </a><div class="space-y-2.5">
+      
+      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
+        href="/articles/converting-flask-to-lambda/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Converting Flask to Lambda</h3>
+        <div
+          class="text-sm  text-slate-400  line-clamp-2">
+          I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
+Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:
+        </div>
+      </a>
+      </div>
+    </section>
+
+  <div class="overflow-y-auto h-screen w-full">
+    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+
+      
+      <h1 class="!mb-2">Converting Flask to Lambda</h1>
+
+	  
+      <p class="text-sm text-slate-500 !mb-8"> Published August 25, 2024
+		
+	  </p>
+      
+
+      
+
+      <p>I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.</p>
+<p>Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:</p>
+<ul>
+<li><a href="https://www.serverless.com/blog/flask-serverless-api-in-aws-lambda-the-easy-way"  target="_blank" rel="noopener" >https://www.serverless.com/blog/flask-serverless-api-in-aws-lambda-the-easy-way</a></li>
+<li><a href="https://hacksaw.co.za/blog/flask-on-aws-serverless-a-learning-journey-part-1/"  target="_blank" rel="noopener" >https://hacksaw.co.za/blog/flask-on-aws-serverless-a-learning-journey-part-1/</a></li>
+<li><a href="https://dev.to/divporter/deploying-a-flask-app-to-aws-lambda-5em0"  target="_blank" rel="noopener" >https://dev.to/divporter/deploying-a-flask-app-to-aws-lambda-5em0</a></li>
+</ul>
+<p>There’s another model of rewriting the web layer of your app:</p>
+<ul>
+<li><a href="https://pypi.org/project/flask-lambda/"  target="_blank" rel="noopener" >https://pypi.org/project/flask-lambda/</a></li>
+<li><a href="https://www.cloudtechsimplified.com/run-python-flask-in-aws-lambda/"  target="_blank" rel="noopener" >https://www.cloudtechsimplified.com/run-python-flask-in-aws-lambda/</a></li>
+</ul>
+<p>And there’s a final model of a magic middleware layer that you can throw in with a bit of Terraform:</p>
+<ul>
+<li><a href="https://github.com/awslabs/aws-lambda-web-adapter"  target="_blank" rel="noopener" >https://github.com/awslabs/aws-lambda-web-adapter</a></li>
+</ul>
+<p>I don’t really like any of these options. For enterprise deployment, the products like Serverless and Zappa cost money. Alternative Python modules that require a web layer rewrite cease to function for local development unless you run the containerized Lambda simulator, which then requires additional software (namely Docker) on the desktop. And the magic middleware layer is a really nice option, but because it’s an AWS Labs product instead of a GA product, enterprise deployment with it is difficult.</p>
+<h2 id="aws-lambda-architecture">AWS Lambda Architecture</h2>
+<p>A basic Lambda app has a few different components. Requests come in via an API Gateway or an Application Load Balancer. They’re then processed by the Lambda. Depending on the app, there might be backend calls to a database.</p>
+<p>The reason there’s a couple layers to this architecture is because Lambda doesn’t natively use HTTP. Lambda is designed to ingest JSON, so we need to add something in front of it to convert the HTTP to a pure JSON payload.</p>
+<h2 id="json-payload-model">JSON Payload Model</h2>
+<p>The key to this conversion is understanding how an HTTP request flows from the API Gateway to the Lambda.</p>
+<p>A Lambda requires a handler function that ingests two variables, <code>event</code> and <code>context</code>. In the Python context, <code>event</code> is a dictionary that contains all the keys we would normally use Flask to scrape from the web request:</p>
+<pre tabindex="0"><code>event.keys()
+
+requestContext
+httpMethod
+path
+queryStringParameters
+headers
+body
+isBase64Encoded
+</code></pre><h2 id="using-event-to-route-traffic">Using event to route traffic</h2>
+<p>Using the <code>path</code> key along with <code>match</code>, a newer Python feature, we can easily route traffic:</p>
+<pre tabindex="0"><code>def lambda_handler(event, context):
+
+	request_path = event[path]
+	response = ‘’ # initializing the variable
+
+	match request_path.lower(): # make sure the string is normalized
+		case ‘/‘:
+			response = index()
+		case ‘/some_other_web_page’:
+			Response = some_other_function()
+		case _: # underscore is the catch-all default case
+			return {‘statusCode’: 404}
+
+	return {
+		‘statusCode’: 200,
+		‘body’: json.dumps(response)
+	}
+</code></pre><p>But wait! This is just rewriting the web layer, isn’t it?</p>
+<h2 id="integrating-with-an-existing-flask-app">Integrating with an existing Flask app</h2>
+<p>It might be, except for the fact that there’s a good way to <em>abstract</em> the old Flask app in a way that preserves all the excellent templating built into it.</p>
+<p>Let’s take a basic Flask app:</p>
+<pre tabindex="0"><code>from flask import (
+	blueprint,
+	render_template,
+	jsonify,
+	response,
+	request
+)
+
+web_app = Blueprint(‘web_app’, __name__)
+
+@web_app.route(“/“)
+def index() -&gt; Response:
+	return render_template(
+		‘index.html’,
+		title=“My Web App”,
+	)
+
+@web_app.route(“/some_other_route”)
+def some_other_route() -&gt; Response:
+	input = request.args.get(‘param_name’)
+	# TODO: Logic generating some output
+
+	return jsonify(output)
+</code></pre><p>We have 2 endpoints. There’s a basic index page attached to <code>/</code>, and a more complex <code>/some_other_route</code> that does some logic and returns a pure JSON response.</p>
+<p>For the conversion, I want to move from this file to 3 separate files:</p>
+<h3 id="web_functionspy">web_functions.py</h3>
+<pre tabindex="0"><code>from flask import (
+	render_template,
+	jsonify,
+	response
+)
+
+def index() -&gt; Response:
+	return render_template(
+		‘index.html’,
+		title=“My Web App”,
+	)
+
+def some_other_route(input_data) -&gt; Response:
+	# TODO: Logic generating some output
+
+	return jsonify(output)
+</code></pre><h3 id="flask_routespy">flask_routes.py</h3>
+<pre tabindex="0"><code>import web_functions
+
+from flask import (
+	blueprint,
+	response,
+	request
+)
+
+web_app = blueprint(‘web_app’, __name__)
+
+@web_app.route(“/“)
+def index() -&gt; Response:
+	return web_functions.index()
+
+@web_app.route(“/some_other_route”)
+def some_other_route() -&gt; Response:
+	input = request.args.get(‘param_name’)
+	return web_functions.some_other_route(input)
+</code></pre><p>All we’re doing here is separating the Flask web functions (defining routes, dealing with input arguments, defining the web app) from the actual logic of the functions.</p>
+<h3 id="lambda_routespy">lambda_routes.py</h3>
+<pre tabindex="0"><code>import json
+import web_functions
+
+from Flask import Response
+
+def lambda_handler(event, context) -&gt; Response:
+
+	request_path = event[path]
+	
+
+	match request_path.lower():
+		case “/“:
+			return web_functions.index()
+
+		case “/some_other_route”:
+			input = event[‘queryStringParameters’][’param_name’]
+			return web_functions.some_other_route(input)
+
+		case _:
+			return {‘statusCode’: 404}
+</code></pre><p>Let&rsquo;s examine how this works for a minute.</p>
+<p>If we want to develop this application locally, we just need to run it like a normal Flask app. Requests come through <code>flask_routes.py</code> and then get sent to <code>web_functions.py</code>.</p>
+<p>And if we then deploy this code to AWS, the request will come through an Application Load Balancer or API Gateway to <code>lambda_routes.py</code>. The code in <code>lambda_routes.py</code> will then call <code>web_functions.py</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So what did we do here?</p>
+<p>We took a standard Flask app and abstracted it just a little bit. We separated the code the parses inputs and sends outputs from the code that does the request processing. This small change means that we can do our local web development in mostly native Flask. And we can also deploy this code directly to AWS Lambda and have it work natively.</p>
+<p>We&rsquo;ve created two doors that lead to the same room with minimal extra complexity, allowing us to have the best of both worlds for developing and deploying Flask apps.</p>
+
+    </article>
+  </div>
+
+</div>
+
+
+  
+<script type="text/javascript" src="/main.js" defer></script>
+
+
+  
+
+
+</body>
+
+</html>

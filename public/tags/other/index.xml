@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homepage on Josh Clark</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content in Homepage on Josh Clark</description>
+    <title>Other on Josh Clark</title>
+    <link>http://localhost:1313/tags/other/</link>
+    <description>Recent content in Other on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 25 Aug 2024 11:27:05 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/other/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Converting Flask to Lambda</title>
       <link>http://localhost:1313/articles/converting-flask-to-lambda/</link>
