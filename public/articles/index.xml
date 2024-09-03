@@ -9,7 +9,7 @@
     <lastBuildDate>Mon, 02 Sep 2024 11:07:16 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>An Argument for Increasing TCP&#39;s Initial Congestion Window Again</title>
+      <title>An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</title>
       <link>http://localhost:1313/articles/tcp-initcwnd/</link>
       <pubDate>Mon, 02 Sep 2024 11:07:16 -0400</pubDate>
       <guid>http://localhost:1313/articles/tcp-initcwnd/</guid>
