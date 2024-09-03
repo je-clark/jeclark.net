@@ -1,4 +1,4 @@
-baseURL = 'https://www.jeclark.net/'
+baseURL = '//www.jeclark.net/'
 languageCode = 'en-us'
 title = 'Josh Clark'
 theme= 'digitalgarden'

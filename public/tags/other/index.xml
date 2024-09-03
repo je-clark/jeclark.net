@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Other on Josh Clark</title>
-    <link>http://localhost:1313/tags/other/</link>
+    <link>//localhost:1313/tags/other/</link>
     <description>Recent content in Other on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 25 Aug 2024 11:27:05 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/other/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/other/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Converting Flask to Lambda</title>
-      <link>http://localhost:1313/articles/converting-flask-to-lambda/</link>
+      <link>//localhost:1313/articles/converting-flask-to-lambda/</link>
       <pubDate>Sun, 25 Aug 2024 11:27:05 -0700</pubDate>
-      <guid>http://localhost:1313/articles/converting-flask-to-lambda/</guid>
+      <guid>//localhost:1313/articles/converting-flask-to-lambda/</guid>
       <description>I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.&#xA;Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.&#xA;Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:</description>
     </item>
   </channel>

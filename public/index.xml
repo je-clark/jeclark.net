@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homepage on Josh Clark</title>
-    <link>http://localhost:1313/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content in Homepage on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Sep 2024 11:07:16 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</title>
-      <link>http://localhost:1313/articles/tcp-initcwnd/</link>
+      <link>//localhost:1313/articles/tcp-initcwnd/</link>
       <pubDate>Mon, 02 Sep 2024 11:07:16 -0400</pubDate>
-      <guid>http://localhost:1313/articles/tcp-initcwnd/</guid>
+      <guid>//localhost:1313/articles/tcp-initcwnd/</guid>
       <description>Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.&#xA;I think it&amp;rsquo;s time to revisit that paper and update Google&amp;rsquo;s recommendations for the modern Internet.</description>
     </item>
     <item>
       <title>The Pattern: Identifying Requests and Responses in Encrypted Traffic</title>
-      <link>http://localhost:1313/articles/the-pattern/</link>
+      <link>//localhost:1313/articles/the-pattern/</link>
       <pubDate>Mon, 02 Sep 2024 10:39:49 -0400</pubDate>
-      <guid>http://localhost:1313/articles/the-pattern/</guid>
+      <guid>//localhost:1313/articles/the-pattern/</guid>
       <description>Introduction Advances in cybersecurity frequently mean that it&amp;rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&amp;rsquo;t see everything we want to.&#xA;When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.</description>
     </item>
     <item>
       <title>Troubleshoot Like a Doctor: Differential Diagnosis</title>
-      <link>http://localhost:1313/articles/troubleshoot-like-a-doctor-1/</link>
+      <link>//localhost:1313/articles/troubleshoot-like-a-doctor-1/</link>
       <pubDate>Mon, 02 Sep 2024 10:29:40 -0400</pubDate>
-      <guid>http://localhost:1313/articles/troubleshoot-like-a-doctor-1/</guid>
+      <guid>//localhost:1313/articles/troubleshoot-like-a-doctor-1/</guid>
       <description>Introduction The IT field is terrible at teaching people how to troubleshoot. Sure, if you got a CompTIA A+ or a CCNA, there were modules that talked about how to solve problems, but how much time did you actually spend on those modules? The CCNA course I took spent all of 5 minutes on it, with the message &amp;ldquo;there&amp;rsquo;s probably going to be a question that will ask what order these steps come in.</description>
     </item>
     <item>
       <title>Converting Flask to Lambda</title>
-      <link>http://localhost:1313/articles/converting-flask-to-lambda/</link>
+      <link>//localhost:1313/articles/converting-flask-to-lambda/</link>
       <pubDate>Sun, 25 Aug 2024 11:27:05 -0700</pubDate>
-      <guid>http://localhost:1313/articles/converting-flask-to-lambda/</guid>
+      <guid>//localhost:1313/articles/converting-flask-to-lambda/</guid>
       <description>I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.&#xA;Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.&#xA;Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:</description>
     </item>
   </channel>

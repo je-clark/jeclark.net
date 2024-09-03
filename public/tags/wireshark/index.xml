@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wireshark on Josh Clark</title>
-    <link>http://localhost:1313/tags/wireshark/</link>
+    <link>//localhost:1313/tags/wireshark/</link>
     <description>Recent content in Wireshark on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Sep 2024 10:39:49 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/wireshark/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Pattern: Identifying Requests and Responses in Encrypted Traffic</title>
-      <link>http://localhost:1313/articles/the-pattern/</link>
+      <link>//localhost:1313/articles/the-pattern/</link>
       <pubDate>Mon, 02 Sep 2024 10:39:49 -0400</pubDate>
-      <guid>http://localhost:1313/articles/the-pattern/</guid>
+      <guid>//localhost:1313/articles/the-pattern/</guid>
       <description>Introduction Advances in cybersecurity frequently mean that it&amp;rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&amp;rsquo;t see everything we want to.&#xA;When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.</description>
     </item>
   </channel>

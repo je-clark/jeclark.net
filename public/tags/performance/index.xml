@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Performance on Josh Clark</title>
-    <link>http://localhost:1313/tags/performance/</link>
+    <link>//localhost:1313/tags/performance/</link>
     <description>Recent content in Performance on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Sep 2024 11:07:16 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</title>
-      <link>http://localhost:1313/articles/tcp-initcwnd/</link>
+      <link>//localhost:1313/articles/tcp-initcwnd/</link>
       <pubDate>Mon, 02 Sep 2024 11:07:16 -0400</pubDate>
-      <guid>http://localhost:1313/articles/tcp-initcwnd/</guid>
+      <guid>//localhost:1313/articles/tcp-initcwnd/</guid>
       <description>Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.&#xA;I think it&amp;rsquo;s time to revisit that paper and update Google&amp;rsquo;s recommendations for the modern Internet.</description>
     </item>
   </channel>
