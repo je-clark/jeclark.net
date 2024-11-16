@@ -3,6 +3,8 @@ languageCode = 'en-us'
 title = 'Josh Clark'
 theme= 'digitalgarden'
 
+googleAnalytics = "G-1KE8LGXJ1J"
+
 [menu]
 [[menu.main]]
     name = 'Home'
