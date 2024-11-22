@@ -14,4 +14,4 @@ My goal with this site is to publish Wireshark training guides and also formaliz
 
 Go ahead and take a look at my [posts](/articles/) on the sidebar to the left.
 
-If you want to connect with me, feel free to reach out on [LinkedIn]('https://www.linkedin.com/in/je-clark/') and [GitHub]('https://github.com/je-clark').
+If you want to connect with me, feel free to reach out on [LinkedIn](https://www.linkedin.com/in/je-clark/) and [GitHub](https://github.com/je-clark).
