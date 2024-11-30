@@ -1,0 +1,26 @@
+@media (min-width: 1024px) {
+    .lg\:w-\[580px\] {
+        width:90%
+    }
+}
+
+.max-w-\[65ch\] {
+    max-width: 100%
+}
+
+.w-full {
+    width: 90%
+}
+
+.max-w-full {
+    max-width: 100%
+}
+
+.prose {
+    max-width: 100%
+}
+
+.mx-auto {
+    margin-left: 5%;
+    margin-right: 5%
+}
