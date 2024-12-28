@@ -2,7 +2,9 @@
 
 ## Create a new post
 
-`hugo new content content/articles/< article name >`
+`hugo new content content/articles/< article name >.md`
+
+
 
 ## Run a live dev demo
 
