@@ -6,8 +6,15 @@
     <description>Recent content in Homepage on Josh Clark</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2024 11:07:16 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2024 14:26:52 -0800</lastBuildDate>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Troubleshoot Like a Doctor: HOPS</title>
+      <link>//localhost:1313/articles/troubleshoot-like-a-doctor-2/</link>
+      <pubDate>Sat, 28 Dec 2024 14:26:52 -0800</pubDate>
+      <guid>//localhost:1313/articles/troubleshoot-like-a-doctor-2/</guid>
+      <description>Introduction The last time we looked at how to diagnose like a doctor, we focused on the differential diagnosis (dDx). This is the mental model that doctors use to assess possible causes of an issue and prioritize tests to figure out what&amp;rsquo;s happening. For more information on differential diagnosis, you can read Part 1 of this series.&#xA;Today, we need to talk through how we gather the best information to feed your dDx and how to make your diagnostic actions count.</description>
+    </item>
     <item>
       <title>An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</title>
       <link>//localhost:1313/articles/tcp-initcwnd/</link>
