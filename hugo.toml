@@ -31,6 +31,10 @@ googleAnalytics = "G-1KE8LGXJ1J"
     url = '/tags/wireshark'
     weight = 4
 [[menu.main]]
+    name = 'Stratoshark'
+    url = '/tags/stratoshark'
+    weight = 4
+[[menu.main]]
     name = 'Performance'
     url = '/tags/performance'
     weight = 4
