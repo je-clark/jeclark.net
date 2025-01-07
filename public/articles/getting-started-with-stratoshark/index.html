@@ -8,11 +8,11 @@
   <link rel="icon" href="/favicon.ico">
 
   <title>
-    An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again - Josh Clark
+    Getting Started With Stratoshark - Josh Clark
   </title>
 
-  <meta name="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
-I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet." /><meta name="generator" content="Hugo 0.127.0">
+  <meta name="description" content="Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+In particular, I&rsquo;m really excited to be able to analyze system calls on Linux systems. This post summarizes what I&rsquo;ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis." /><meta name="generator" content="Hugo 0.127.0">
 
   <link rel="stylesheet" href="//localhost:1313/css/main.css" />
   <link rel="stylesheet" href="//localhost:1313/css/my_style.css" />
@@ -20,43 +20,43 @@ I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommen
   
   
 
-  <meta property="og:url" content="//localhost:1313/articles/tcp-initcwnd/">
+  <meta property="og:url" content="//localhost:1313/articles/getting-started-with-stratoshark/">
   <meta property="og:site_name" content="Josh Clark">
-  <meta property="og:title" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
-  <meta property="og:description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
-I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+  <meta property="og:title" content="Getting Started With Stratoshark">
+  <meta property="og:description" content="Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+In particular, I’m really excited to be able to analyze system calls on Linux systems. This post summarizes what I’ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="articles">
-    <meta property="article:published_time" content="2024-09-02T11:07:16-04:00">
-    <meta property="article:modified_time" content="2024-09-02T11:07:16-04:00">
-    <meta property="article:tag" content="Performance">
+    <meta property="article:published_time" content="2025-01-07T15:28:55-08:00">
+    <meta property="article:modified_time" content="2025-01-07T15:28:55-08:00">
+    <meta property="article:tag" content="Stratoshark">
 
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
-  <meta name="twitter:description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
-I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
+  <meta name="twitter:title" content="Getting Started With Stratoshark">
+  <meta name="twitter:description" content="Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+In particular, I’m really excited to be able to analyze system calls on Linux systems. This post summarizes what I’ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.">
 
 
   
-  <meta itemprop="name" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
-  <meta itemprop="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
-I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
-  <meta itemprop="datePublished" content="2024-09-02T11:07:16-04:00">
-  <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
-  <meta itemprop="wordCount" content="1445">
-  <meta itemprop="keywords" content="Performance">
+  <meta itemprop="name" content="Getting Started With Stratoshark">
+  <meta itemprop="description" content="Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+In particular, I’m really excited to be able to analyze system calls on Linux systems. This post summarizes what I’ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.">
+  <meta itemprop="datePublished" content="2025-01-07T15:28:55-08:00">
+  <meta itemprop="dateModified" content="2025-01-07T15:28:55-08:00">
+  <meta itemprop="wordCount" content="1214">
+  <meta itemprop="keywords" content="Stratoshark">
 
   
-  <meta itemprop="name" content="An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again">
-  <meta itemprop="description" content="Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
-I think it’s time to revisit that paper and update Google’s recommendations for the modern Internet.">
-  <meta itemprop="datePublished" content="2024-09-02T11:07:16-04:00">
-  <meta itemprop="dateModified" content="2024-09-02T11:07:16-04:00">
-  <meta itemprop="wordCount" content="1445">
-  <meta itemprop="keywords" content="Performance">
+  <meta itemprop="name" content="Getting Started With Stratoshark">
+  <meta itemprop="description" content="Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+In particular, I’m really excited to be able to analyze system calls on Linux systems. This post summarizes what I’ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.">
+  <meta itemprop="datePublished" content="2025-01-07T15:28:55-08:00">
+  <meta itemprop="dateModified" content="2025-01-07T15:28:55-08:00">
+  <meta itemprop="wordCount" content="1214">
+  <meta itemprop="keywords" content="Stratoshark">
 </head>
 <body class="flex relative h-full min-h-screen"><aside
   class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:basis-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar flex-shrink-0">
@@ -239,13 +239,13 @@ I think it’s time to revisit that paper and update Google’s recommendations 
       <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
     </a><div class="space-y-2.5">
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
         href="/articles/getting-started-with-stratoshark/">
         
         
         <h3 class="text-lg font-semibold mb-0.5">Getting Started With Stratoshark</h3>
         <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          class="text-sm  text-slate-400  line-clamp-2">
           Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
 In particular, I&rsquo;m really excited to be able to analyze system calls on Linux systems. This post summarizes what I&rsquo;ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.
         </div>
@@ -263,13 +263,13 @@ Today, we need to talk through how we gather the best information to feed your d
         </div>
       </a>
       
-      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
         href="/articles/tcp-initcwnd/">
         
         
         <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h3>
         <div
-          class="text-sm  text-slate-400  line-clamp-2">
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
           Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
 I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.
         </div>
@@ -317,10 +317,10 @@ Surveying the landscape, there seems to be one model of providing a developer a 
     <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
 
       
-      <h1 class="!mb-2">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h1>
+      <h1 class="!mb-2">Getting Started With Stratoshark</h1>
 
 	  
-      <p class="text-sm text-slate-500 !mb-8"> Published September 2, 2024
+      <p class="text-sm text-slate-500 !mb-8"> Published January 7, 2025
 		
 	  </p>
       
@@ -328,54 +328,96 @@ Surveying the landscape, there seems to be one model of providing a developer a 
       
 
       <h2 id="introduction">Introduction</h2>
-<p>Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published <a href="https://research.google/pubs/an-argument-for-increasing-tcps-initial-congestion-window/"  target="_blank" rel="noopener" >one of my favorite papers</a>, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an <a href="https://www.rfc-editor.org/rfc/rfc6928"  target="_blank" rel="noopener" >RFC filed with the IETF</a>, and eventually became an internet standard.</p>
-<p>I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.</p>
-<h2 id="tcp-initial-congestion-window">TCP Initial Congestion Window</h2>
-<p>TCP uses an idea called the sliding window to manage how much data is in transit on the network at any given time. The receiver manages a receive window that tells the sender how much data it is willing to receive at once. In modern TCP, the receive window is set very high and only reduces if the receiver is running out of capacity. The goal is to ensure the receiver is never limiting the data transfer speed with a low window.</p>
-<p>At the same time, the sender manages something called a congestion window. This value is the number of packets the sender can send at one time before it needs to pause and wait for a response from the receiver. There are various congestion control algorithms that adjust the congestion window, but the general goal of all of them is to ramp up transmission until it&rsquo;s as fast as possible without being affected by congestion or packet loss somewhere in the network.</p>
-<p>These congestion control algorithms require a seed value at the start of a transmission known as the initial congestion window. This value determines how much data can be sent at the beginning of a connection.</p>
-<p>In traditional TCP (pre-2010), that value was set anywhere between 1 and 3, depending on OS and software. The predominant congestion control algorithm at that time, TCP New Reno, would increase the congestion window by an initial congestion window for every round trip with no packet loss. So a successful connection with no loss would look something like this:</p>
+<p>Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.</p>
+<p>In particular, I&rsquo;m really excited to be able to analyze system calls on Linux systems. This post summarizes what I&rsquo;ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.</p>
+<h2 id="what-are-system-calls">What are System Calls?</h2>
+<p>In a computer, you have applications. Applications include web browsers, email clients, music players, word processors, and whatever else you have installed. These applications need to access things outside of the computer: web browsers need to access the network, music players need to access sound devices, and word processors need to access hard drives and USB drives. However, none of those applications know how to do that.</p>
+<p>The operating system (OS) is what knows how to do that. It knows how to differentiate a WiFi connection from Ethernet, a Bluetooth headset from a speaker plugged into the 3.5mm jack, and an NVMe drive from a SATA drive. And crucially, it makes sure that the applications don&rsquo;t need to know the difference.</p>
+<p>In order to make that work, the OS implements a standard set of functions that applications can use to interact with all those other devices. These are largely really simple functions like <code>read()</code>, <code>write()</code>, <code>socket()</code>, and <code>sendmsg()</code>. And these functions are called system calls.</p>
+<p>So if we have a way to look at the system calls a program is making, we can see everything it&rsquo;s trying to do. We can see all the network communication, all the files it wants to access, all the sounds it wants to play, and all sorts of other things.</p>
+<h2 id="how-can-we-capture-system-calls">How Can We Capture System Calls?</h2>
+<p>In Linux, there&rsquo;s an open source tool called <code>sysdig</code> that functions quite a bit like <code>tcpdump</code> does for packet captures. It&rsquo;s available on <a href="https://github.com/draios/sysdig"  target="_blank" rel="noopener" >Github</a> and comes with a pretty comprehensive set of documentation.</p>
+<p>All we need to do is install <code>sysdig</code> on our target server and run it to collect system call captures. Then we can open the capture file with Stratoshark and start poking around.</p>
+<h2 id="installing-sysdig">Installing Sysdig</h2>
+<p>I&rsquo;m installing <code>sysdig</code> on a Raspberry Pi, but the instructions work for any Linux system.</p>
 <ol>
-<li>Initial congestion window: 2. 2 packets sent (3 KB).</li>
-<li>Congestion window: 4. 6 KB sent.</li>
-<li>Congestion window: 6. 9 KB sent.</li>
+<li>Determine the CPU architecture of the target system. You can do this by running <code>uname -a</code> in the terminal. Mine is a 64 bit ARM system</li>
 </ol>
-<p>And so on&hellip;</p>
-<p>If that connection runs into some packet loss, that congestion window is then cut in half and has to slowly recover. Eventually, in a long connection, the congestion window will settle in to a relatively narrow set of values, and this steady state condition is called convergence.</p>
-<p>This scheme makes sense for the network traffic TCP was designed for. Large file transfers are minimally affected by this initial ramp up period. Depending on the round trip time of the connection, convergence can occur within 1 or 2 seconds, which isn&rsquo;t too long for a file transfer that&rsquo;s expected to take several minutes.</p>
-<p>However, this convergence period has an adverse affect on the predominant communication on the internet: web page loads and API calls.</p>
-<h2 id="http-over-tcp">HTTP over TCP</h2>
-<p>Both web page loads and API calls use HTTP(s), and in the late 2000&rsquo;s, they always used TCP as the transport layer.</p>
-<p>A typical HTTP request looks like this on the network:</p>
-<ol>
-<li>TCP connection is established</li>
-<li>TLS encryption is established</li>
-<li>Client sends an HTTP request (anywhere from 20 - 8000 bytes)</li>
-<li>Server sends an HTTP response (anywhere from 100 bytes - 10 MB)</li>
+<pre tabindex="0"><code>pi@lab:~ $ uname -a
+Linux lab 6.6.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.6.20-1+rpt1 (2024-03-07) aarch64 GNU/Linux
+</code></pre><ol start="2">
+<li>Go to the <a href="https://github.com/draios/sysdig/releases"  target="_blank" rel="noopener" >sysdig releases page</a> on Github and copy the link for your architecture of choice. I&rsquo;m using the <code>*aarch64.deb</code> file.</li>
+<li>On the target system, use <code>wget</code> to download the file.</li>
 </ol>
-<p>Crucially, the statistical distribution of both request and response sizes skews towards the higher end of those ranges. I&rsquo;m certainly not the first person to say that the internet is bloated.</p>
-<p>When TCP&rsquo;s initial congestion window is set to something like 2, the largest request or response that can be sent in a single round trip is 3 KB. And in 2011, that was only about 40% of responses on the internet. That means 60% of assets that had to load for a web page to render had to wait at least an extra round trip to fully download. For typical internet round trips, that&rsquo;s an extra 30ms for each of the 60+ assets that might be more than 3 KB. That means this web page will take an extra 1.2 seconds to load.</p>
-<h2 id="googles-original-recommendation">Google&rsquo;s original recommendation</h2>
-<p>Because of that data, Google chose to increase the initial congestion window on their infrastructure to 10, a round trip data cutoff of 15 KB. Their calculations showed that this would allow nearly 85% of assets being served to users to load in a single round trip.</p>
-<p>However, this doesn&rsquo;t hold true on the 2020s internet. The use of both Javascript and images has skyrocketed, so the initial page loads on websites on modern websites consist of hundreds of assets, most of them 100s of KB in size. The increased bloat of the modern internet is causing us to run into the same problem again.</p>
-<h2 id="what-should-we-do-now">What Should We Do Now?</h2>
-<p>The challenge we face now is that just increasing the initial congestion window by another order of magnitude could be counterproductive. If web servers all over the internet start blasting out 100s of packets at a time, we will just be causing the congestion and packet loss that TCP tries to avoid. Just about everywhere, storage is cheap, but bandwidth is expensive. Because of that, there are a lot of network devices out there connected to low bandwidth links with lots of storage. This means that these devices have deep buffers. A packet trying to exit a low bandwidth link could be stuck waiting in that buffer for a long time before it makes it back onto the network.</p>
-<p>Imagine a home network setup where the internet upload speed is 10 Mbps, but the connection between the router and someone&rsquo;s computer is 1 Gbps. If the computer tries to send something at 1 Gbps, those packets are just going to back up on the router while they come out the other end at 10 Mbps.</p>
-<p>This problem is called bufferbloat, and it&rsquo;s one of the main reasons a slow increase of the congestion window exists.</p>
-<p>Luckily, another Google invention comes to the rescue. Google developed a congestion control algorithm called <a href="https://dl.acm.org/doi/pdf/10.1145/3009824"  target="_blank" rel="noopener" >BBR</a> that works completely differently from every other algorithm in use. Most algorithms look for signs of packet loss as a signal to reduce the congestion window. In developing BBR, Google makes the assumption that packet loss is transient. The existence of packet loss right now is not an accurate predictor for packet loss 20 ms from now. However, congestion due to bufferbloat is much more predictable.</p>
-<p>So BBR mostly ignores packet loss in favor for closely monitoring signs of congestion. When packets are stuck in a buffer in some network device somewhere, they take longer to get to the destination. That means the responses to those packets will also be delayed. BBR looks at the variance in round trip time in a connection and uses that to identify congestion. If there is congestion, then the congestion window is reduced.</p>
-<p>So, to make TCP performant for the modern internet, we need to do a couple things:</p>
+<pre tabindex="0"><code>wget https://github.com/draios/sysdig/releases/download/0.39.0/sysdig-0.39.0-aarch64.deb
+</code></pre><ol start="4">
+<li>Use apt (or your distro&rsquo;s package manager) to install the package.</li>
+</ol>
+<pre tabindex="0"><code>apt install sysdig-0.39.0-aarch64.deb
+</code></pre><ol start="5">
+<li>Run <code>sysdig --version</code> to validate the installation was successful.</li>
+</ol>
+<pre tabindex="0"><code>pi@lab:~ $ sysdig --version
+sysdig version 0.39.0
+</code></pre><h2 id="installing-stratoshark">Installing Stratoshark</h2>
+<p>The Stratoshark installer is buried in the automated builds section of the <a href="https://www.wireshark.org/download/automated/"  target="_blank" rel="noopener" >Wireshark downloads site</a> until the 1.0 release, which is currently expected to be in May 2025.</p>
+<p>Because I use a Mac, I&rsquo;ll go to the <code>osx</code> folder and download the latest version. I usually look for the newest Last Modified Date.</p>
+<p>From there, installation is just like Wireshark. Double-click the <code>.dmg</code> file and install Stratoshark.</p>
+<h2 id="a-brief-guide-to-sysdig-captures">A Brief Guide to Sysdig Captures</h2>
+<h3 id="creating-a-first-capture">Creating a First Capture</h3>
+<p>Sysdig can be run without any options to get a wide open capture of all the system calls on a computer, including the ones sysdig is making.</p>
+<pre tabindex="0"><code>sysdig -w capture.scap
+</code></pre><p>This command will capture everything and save it to <code>capture.scap</code>.</p>
+<h3 id="seeing-more-payload-data">Seeing More Payload Data</h3>
+<p>The default behavior for tcpdump is to record the entire payload of every packet. If you want to decrease the file size, you need to adjust the snap length of the capture to only record partial packets.</p>
+<p>Sysdig, on the other hand, defaults to only recording 80 bytes of payload. You can modify this with the <code>-s</code> flag. There doesn&rsquo;t appear to be a way to run sysdig without a limit on payload sizes.</p>
+<pre tabindex="0"><code>sysdig -s 1000 -w capture.scap
+</code></pre><p>Capture the first 1000 bytes of payload of every system call and save the results to <code>capture.scap</code>.</p>
+<h3 id="focusing-on-just-a-couple-processes">Focusing on Just a Couple Processes</h3>
+<p>Filtering in sysdig functions a little more like <code>tshark</code> than <code>tcpdump</code>. The syntax is more similar to a display filter than a capture filter. If I want to look at only nginx system calls, I&rsquo;d use:</p>
+<pre tabindex="0"><code>sysdig -w capture.scap proc.name=nginx
+</code></pre><p>You can also look at multiple processes:</p>
+<pre tabindex="0"><code>sysdig -w capture.scap proc.name=nginx or proc.name=python3
+</code></pre><h3 id="focusing-on-specific-system-calls">Focusing on Specific System Calls</h3>
+<p>You can also focus on specific system call types. If you want to look at only files getting opened:</p>
+<pre tabindex="0"><code>sysdig -w capture.scap evt.type=open
+</code></pre><h3 id="finding-other-kinds-of-filters">Finding other Kinds of Filters</h3>
+<p>Sysdig has a built-in repository of all the included filters.</p>
+<pre tabindex="0"><code>sysdig -l
+</code></pre><h3 id="analyzing-scap-files-with-stratoshark">Analyzing scap files with Stratoshark</h3>
+<p>Once you open one of those <code>scap</code> files in Stratoshark, you&rsquo;ll see a very familiar interface. The biggest difference you come across is the event details pane (packet details in Wireshark).</p>
+<p>This pane has a completely different set of expanding headers. I&rsquo;ve found these to be the most useful:</p>
 <ul>
-<li>Increase the initial congestion window to a higher reasonable number (my sense is that number should be between 20 and 40)</li>
-<li>Adopt BBR as the default congestion control algorithm for web servers and API servers.</li>
+<li>System Event - this header is the equivalent of the Wireshark &ldquo;Frame&rdquo; header
+<ul>
+<li>Arrival time - the timestamp of the event</li>
 </ul>
-<h2 id="what-about-quic">What about QUIC?</h2>
-<p>I&rsquo;ll admit there&rsquo;s some incongruity in my post here. Why am I making it instead of Google?</p>
-<p>The answer is pretty simple: Google has largely pivoted away from TCP. Google also developed QUIC, which is HTTP over UDP. There&rsquo;s no longer any congestion window to deal with, so entire messages can be sent at once. And most of the time, if there&rsquo;s any packet loss, it&rsquo;s faster to retransmit the entire message instead of waiting for TCP to start transmitting at a decent rate.</p>
-<p>However, I don&rsquo;t think that QUIC means we can ignore TCP tuning. For one, enterprises largely disable QUIC and force websites like Google to downgrade back to TCP. This is because there&rsquo;s only a single firewall vendor that can decrypt and inspect QUIC traffic (Go Fortinet!). Every other vendor provides a setting to disable QUIC support on the entire network. And second, there&rsquo;s always legacy equipment that doesn&rsquo;t support modern protocols. By tuning TCP better, we can make the internet a better experience for those legacy devices as well.</p>
+</li>
+<li>Event Information - this header contains the most crucial information for analysis
+<ul>
+<li>Direction - a right-facing carat (&gt;) indicates a call from an application to the OS (a request), and a left-facing carat (&lt;) indicates a response from the OS</li>
+<li>Type - the name of the system call function being called</li>
+<li>Arguments - this may or may not show up, depending on the function being called. If it does show up, it displays the specific request or response values of the call</li>
+</ul>
+</li>
+<li>Process Information - information about the process sending or receiving the syscall
+<ul>
+<li>Name - the name of the process</li>
+<li>Parent Name - the name of the process that created the process. For example, a system running Apache will often have Name = kworker and Parent Name = apache</li>
+<li>Process ID - This is equivalent to the PID you would find using <code>netstat</code> or <code>top</code>. This can help integrate with data from other tools.</li>
+</ul>
+</li>
+<li>File Descriptor Information - if shown, this contains details of the file the process is trying to interact with
+<ul>
+<li>FD Name - in Linux, almost everything is a file, including network sockets</li>
+</ul>
+</li>
+</ul>
+<h3 id="getting-more-information-about-individual-calls">Getting More Information About Individual Calls</h3>
+<p>As I learn more about troubleshooting with Stratoshark, the biggest issue I run into is that there are hundreds of system calls, and I don&rsquo;t know what they all do.</p>
+<p>I&rsquo;ve found that <a href="https://www.man7.org/linux/man-pages/man2/syscalls.2.html"  target="_blank" rel="noopener" >the man pages</a> have a fantastic reference. I can search that page for the event type and get a description of what it does, what the request and response objects are, and how it works under the hood.</p>
 <h2 id="summary">Summary</h2>
-<p>The internet is ready for another increase in TCP&rsquo;s initial congestion window as long as we can do it carefully and with the help of TCP BBR as a congestion control protocol.</p>
-<p>I&rsquo;m going to continue investigating and talking about the most performant TCP settings for the modern internet, and I hope I can drive some adoption to make the modern web faster for everyone.</p>
+<p>Learning how to use Stratoshark is an ongoing process, and I&rsquo;m sure that my understanding is going to be far better in a few months. But I don&rsquo;t want to wait a few months to start getting other smart people looking at scap files. I hope that this post will remain a useful reference guide as you begin learning Stratoshark and system call analysis.h</p>
 
     </article>
   </div>

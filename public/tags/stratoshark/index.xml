@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stratoshark on Josh Clark</title>
+    <link>//localhost:1313/tags/stratoshark/</link>
+    <description>Recent content in Stratoshark on Josh Clark</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Jan 2025 15:28:55 -0800</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/stratoshark/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started With Stratoshark</title>
+      <link>//localhost:1313/articles/getting-started-with-stratoshark/</link>
+      <pubDate>Tue, 07 Jan 2025 15:28:55 -0800</pubDate>
+      <guid>//localhost:1313/articles/getting-started-with-stratoshark/</guid>
+      <description>Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.&#xA;In particular, I&amp;rsquo;m really excited to be able to analyze system calls on Linux systems. This post summarizes what I&amp;rsquo;ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.</description>
+    </item>
+  </channel>
+</rss>
