@@ -55,7 +55,7 @@ sysdig version 0.39.0
 
 **Updated Jan 2025**
 
-The Stratoshark installer is now available from [stratoshark.com](https://stratoshark.org/).
+The Stratoshark installer is now available from [stratoshark.org](https://stratoshark.org/).
 
 On the Downloads section of the web page, click the link for your appropriate platform.
 
