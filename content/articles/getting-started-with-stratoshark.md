@@ -53,11 +53,13 @@ sysdig version 0.39.0
 
 ## Installing Stratoshark
 
-The Stratoshark installer is buried in the automated builds section of the [Wireshark downloads site](https://www.wireshark.org/download/automated/) until the 1.0 release, which is currently expected to be in May 2025.
+**Updated Jan 2025**
 
-Because I use a Mac, I'll go to the `osx` folder and download the latest version. I usually look for the newest Last Modified Date.
+The Stratoshark installer is now available from [stratoshark.com](https://stratoshark.org/).
 
-From there, installation is just like Wireshark. Double-click the `.dmg` file and install Stratoshark.
+On the Downloads section of the web page, click the link for your appropriate platform.
+
+From there, installation is just like Wireshark. Since I use a Mac, I double-click the `.dmg` file and install Stratoshark.
 
 ## A Brief Guide to Sysdig Captures
 
