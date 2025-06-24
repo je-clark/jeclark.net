@@ -24,3 +24,76 @@
     margin-left: 5%;
     margin-right: 5%
 }
+
+:root {
+  /* Light mode colors */
+  --brand-primary: #1e3a8a;
+  --brand-navy: #0f172a;
+  --brand-red: #dc2626;
+  --brand-gold: #d97706;
+  --brand-gray: #B0B7C1;
+
+  --sidebar-header: #0f172a;
+
+}
+html.dark {
+  /* Dark mode adjustments */
+  --brand-primary: #f1f5f9;
+  --brand-navy: #e2e8f0;
+  --brand-red: #ef4444;
+  --brand-gold: #f59e0b;
+
+  --sidebar-header: #cbd5e1;
+}
+
+/* Typography */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Crimson Text', serif;
+  color: var(--brand-navy);
+  position: relative;
+
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Header styling */
+.site-header h1 {
+  color: var(--brand-primary);
+}
+
+.tagline {
+  font-size: 0.9em;
+  color: var(--brand-gray);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Link styling */
+a {
+  color: var(--brand-primary);
+}
+
+a:hover {
+  color: var(--brand-gold);
+}
+
+/* Section header styling - brand aligned and mode responsive */
+a.text-slate-400.font-semibold.border-b,
+a.text-slate-400.font-semibold.border-b span {
+  color: var(--sidebar-header) !important;
+}
+
+/* Article preview background - brand aligned */
+a.article.block.bg-slate-900 {
+  background-color: #e2e8f0 !important; /* Light background for light mode */
+}
+
+html.dark a.article.block.bg-slate-900 {
+  background-color: #1e3a8a !important; /* Match your sidebar background in dark mode */
+}
