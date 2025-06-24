@@ -88,72 +88,109 @@ When analyzing traffic in Wireshark, identifying requests and responses are key 
   <ul class="list-none flex flex-col gap-1">
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/" 
+        
+          data-section="home"
+        
+        >
         <span>Home</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
-        href="#" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" 
+        
+        >
         <span>Content</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/articles" 
+        
+          data-section="articles"
+        
+        >
         <span>All Articles</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
-        href="#" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" 
+        
+        >
         <span>Articles by Topic</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/tags/other" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/other" 
+        
+          data-tag="other"
+          data-redirect-url="/articles/?tag=other"
+        
+        >
         <span>Other</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/tags/performance" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/performance" 
+        
+          data-tag="performance"
+          data-redirect-url="/articles/?tag=performance"
+        
+        >
         <span>Performance</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/tags/stratoshark" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/stratoshark" 
+        
+          data-tag="stratoshark"
+          data-redirect-url="/articles/?tag=stratoshark"
+        
+        >
         <span>Stratoshark</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/tags/troubleshooting" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/troubleshooting" 
+        
+          data-tag="troubleshooting"
+          data-redirect-url="/articles/?tag=troubleshooting"
+        
+        >
         <span>Troubleshooting</span>
         
       </a>
     </li>
     
     <li>
-      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/tags/wireshark" >
+      <a class="nav-item px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/tags/wireshark" 
+        
+          data-tag="wireshark"
+          data-redirect-url="/articles/?tag=wireshark"
+        
+        >
         <span>Wireshark</span>
         
       </a>
@@ -234,104 +271,141 @@ When analyzing traffic in Wireshark, identifying requests and responses are key 
 
 <div class="flex flex-1 h-screen relative w-full min-w-0">
 
-  <section
-    class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
-  lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
+
+
+
+
+
+
+<div id="tag-context-data" style="display: none;">
+  
     
-    
-    <a href="//localhost:1313/articles/">
-      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
-    </a><div class="space-y-2.5">
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles/getting-started-with-stratoshark/">
+      
         
+      
         
-        <h3 class="text-lg font-semibold mb-0.5">Getting Started With Stratoshark</h3>
-        <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
-          Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <span data-tag="wireshark" data-tag-title="Wireshark"></span>
+        
+      
+    
+  
+</div>
+
+<section
+  class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
+lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0" id="sidebar-section" style="opacity: 0;">
+  
+  
+  
+  
+  <a href="//localhost:1313/articles/" id="section-header-link">
+    <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Articles</h2>
+  </a><div class="space-y-2.5" id="articles-list">
+    
+    <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      href="/articles/getting-started-with-stratoshark/">
+      
+      
+      <h3 class="text-lg font-semibold mb-0.5">Getting Started With Stratoshark</h3>
+      <div
+        class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+        Introduction Stratoshark is the newest piece of software coming from the Wireshark Foundation. For experienced network analysts like me, it promises to be a familiar interface and filtering engine for unfamiliar domains like cloud and system call internals.
 In particular, I&rsquo;m really excited to be able to analyze system calls on Linux systems. This post summarizes what I&rsquo;ve learned about how to set up a lab environment, install Stratoshark, and begin some analysis.
-        </div>
-      </a>
+      </div>
+    </a>
+    
+    <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      href="/articles/troubleshoot-like-a-doctor-2/">
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles/troubleshoot-like-a-doctor-2/">
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: HOPS</h3>
-        <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
-          Introduction The last time we looked at how to diagnose like a doctor, we focused on the differential diagnosis (dDx). This is the mental model that doctors use to assess possible causes of an issue and prioritize tests to figure out what&rsquo;s happening. For more information on differential diagnosis, you can read Part 1 of this series.
+      
+      <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: HOPS</h3>
+      <div
+        class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+        Introduction The last time we looked at how to diagnose like a doctor, we focused on the differential diagnosis (dDx). This is the mental model that doctors use to assess possible causes of an issue and prioritize tests to figure out what&rsquo;s happening. For more information on differential diagnosis, you can read Part 1 of this series.
 Today, we need to talk through how we gather the best information to feed your dDx and how to make your diagnostic actions count.
-        </div>
-      </a>
+      </div>
+    </a>
+    
+    <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      href="/articles/tcp-initcwnd/">
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles/tcp-initcwnd/">
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h3>
-        <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
-          Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
+      
+      <h3 class="text-lg font-semibold mb-0.5">An Argument for Increasing TCP&#39;s Initial Congestion Window ... Again</h3>
+      <div
+        class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+        Introduction Google has a long history of performing networking research, making changes, and pushing those changes to the entire internet. In 2011, they published one of my favorite papers, which described their decision to increase the TCP initial congestion window from 1 to 10 on their entire infrastructure. This was soon followed by an RFC filed with the IETF, and eventually became an internet standard.
 I think it&rsquo;s time to revisit that paper and update Google&rsquo;s recommendations for the modern Internet.
-        </div>
-      </a>
+      </div>
+    </a>
+    
+    <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
+      href="/articles/the-pattern/">
       
-      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
-        href="/articles/the-pattern/">
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h3>
-        <div
-          class="text-sm  text-slate-400  line-clamp-2">
-          Introduction Advances in cybersecurity frequently mean that it&rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&rsquo;t see everything we want to.
+      
+      <h3 class="text-lg font-semibold mb-0.5">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h3>
+      <div
+        class="text-sm  text-slate-400  line-clamp-2">
+        Introduction Advances in cybersecurity frequently mean that it&rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&rsquo;t see everything we want to.
 When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at.
-        </div>
-      </a>
+      </div>
+    </a>
+    
+    <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      href="/articles/troubleshoot-like-a-doctor-1/">
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles/troubleshoot-like-a-doctor-1/">
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: Differential Diagnosis</h3>
-        <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
-          Introduction The IT field is terrible at teaching people how to troubleshoot. Sure, if you got a CompTIA A+ or a CCNA, there were modules that talked about how to solve problems, but how much time did you actually spend on those modules? The CCNA course I took spent all of 5 minutes on it, with the message &ldquo;there&rsquo;s probably going to be a question that will ask what order these steps come in.
-        </div>
-      </a>
       
-      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
-        href="/articles/converting-flask-to-lambda/">
-        
-        
-        <h3 class="text-lg font-semibold mb-0.5">Converting Flask to Lambda</h3>
-        <div
-          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
-          I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
+      <h3 class="text-lg font-semibold mb-0.5">Troubleshoot Like a Doctor: Differential Diagnosis</h3>
+      <div
+        class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+        Introduction The IT field is terrible at teaching people how to troubleshoot. Sure, if you got a CompTIA A+ or a CCNA, there were modules that talked about how to solve problems, but how much time did you actually spend on those modules? The CCNA course I took spent all of 5 minutes on it, with the message &ldquo;there&rsquo;s probably going to be a question that will ask what order these steps come in.
+      </div>
+    </a>
+    
+    <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+      href="/articles/converting-flask-to-lambda/">
+      
+      
+      <h3 class="text-lg font-semibold mb-0.5">Converting Flask to Lambda</h3>
+      <div
+        class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+        I’ve worked out how to convert a local Flask app to AWS Lambda without having to involve extra modules, vendors, or middleware.
 Introduction Moving products from a prototype to a deployment can be tricky. In particular, I find myself writing small Flask apps for every little problem, and trying to deploy them to Lambda involves putting an entire layer of abstraction on top of them.
 Surveying the landscape, there seems to be one model of providing a developer a CLI tool that builds and deploys the entire project:
-        </div>
-      </a>
       </div>
-    </section>
+    </a>
+    </div>
+  </section>
 
-  <div class="overflow-y-auto h-screen w-full">
-    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+<div class="overflow-y-auto h-screen w-full">
+  <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
 
+    
+    <h1 class="!mb-2">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h1>
+
+    
+    <p class="text-sm text-slate-500 !mb-8"> Published September 2, 2024
       
-      <h1 class="!mb-2">The Pattern: Identifying Requests and Responses in Encrypted Traffic</h1>
+    </p>
+    
 
-	  
-      <p class="text-sm text-slate-500 !mb-8"> Published September 2, 2024
-		
-	  </p>
-      
+    
 
-      
-
-      <h2 id="introduction">Introduction</h2>
+    <h2 id="introduction">Introduction</h2>
 <p>Advances in cybersecurity frequently mean that it&rsquo;s harder to troubleshoot issues. Some security solutions add a lot of complexity to a system, and sometimes the fact that traffic is encrypted means we can&rsquo;t see everything we want to.</p>
 <p>When analyzing traffic in Wireshark, identifying requests and responses are key to understanding how two computers are interacting with each other over the network. Figuring out what the request and response sizes are is also important to figure out what particular network setting to look at. For example, looking at congestion and receive window settings are important for large file downloads, but those don&rsquo;t make much of a difference when the request is <code>GET /favicon</code>.</p>
 <p>When network analysts have the ability of analyzing decrypted traffic, Wireshark does a fantastic job of showing where requests and responses start and end, as well as how large those objects are. But when the traffic is encrypted, the analysts need to be better tuned into how that traffic flows.</p>
@@ -386,10 +460,82 @@ Surveying the landscape, there seems to be one model of providing a developer a 
 </ol>
 <p>This pattern lets us identify requests and responses in encrypted traffic.</p>
 
-    </article>
-  </div>
+  </article>
+</div>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebarSection = document.getElementById('sidebar-section');
+  const currentPermalink = window.location.pathname;
+  
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const tagParam = urlParams.get('tag');
+  
+  if (tagParam) {
+    
+    const tagContextData = document.getElementById('tag-context-data');
+    const tagSpan = tagContextData.querySelector(`[data-tag="${tagParam}"]`);
+    
+    if (tagSpan) {
+      
+      const tagTitle = tagSpan.getAttribute('data-tag-title');
+      
+      
+      fetch(`/tags/${tagParam}/`)
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const tagSidebar = doc.querySelector('section');
+          
+          if (tagSidebar) {
+            sidebarSection.innerHTML = tagSidebar.innerHTML;
+            
+            
+            sidebarSection.querySelectorAll('.article').forEach(function(link) {
+              const url = new URL(link.href, window.location.origin);
+              url.searchParams.set('tag', tagParam);
+              link.href = url.toString();
+              
+              
+              const linkPath = new URL(link.href, window.location.origin).pathname;
+              if (linkPath === currentPermalink) {
+                
+                link.classList.remove('hover:bg-slate-200', 'dark:hover:bg-slate-700');
+                link.classList.add('bg-slate-900', 'dark:bg-slate-700', 'text-slate-50');
+                
+                
+                const summaryDiv = link.querySelector('div.text-sm');
+                if (summaryDiv) {
+                  summaryDiv.classList.remove('text-slate-500', 'dark:text-slate-400');
+                  summaryDiv.classList.add('text-slate-400');
+                }
+              }
+            });
+          }
+          
+          
+          sidebarSection.style.opacity = '1';
+        })
+        .catch(error => {
+          console.log('Could not load tag context:', error);
+          
+          sidebarSection.style.opacity = '1';
+        });
+    } else {
+      
+      sidebarSection.style.opacity = '1';
+    }
+  } else {
+    
+    sidebarSection.style.opacity = '1';
+  }
+});
+</script>
+
 
 
   

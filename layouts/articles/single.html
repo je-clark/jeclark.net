@@ -6,61 +6,154 @@
 
 <div class="flex flex-1 h-screen relative w-full min-w-0">
 
-  <section
-    class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
-  lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
-    {{$Section := .Site.GetPage "section" .Section }}
-    {{ with $Section }}
-    <a href="{{ .Permalink }}">
-      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">{{ .Title }}</h2>
-    </a>
-    {{- partial "search.html" . -}}
-    <div class="space-y-2.5">
-      {{ range .Data.Pages -}}
-      {{ $isCurrentPage := eq .RelPermalink $permalink }}
-      <a class="article block px-3 py-4 {{ if $isCurrentPage }} bg-slate-900 dark:bg-slate-700 text-slate-50 {{ else }} hover:bg-slate-200 dark:hover:bg-slate-700 {{ end }}"
-        href="{{ .RelPermalink }}">
-        {{ $title := .Params.title }}
-        {{ with .Params.images }}
-        {{- range first 1 . }}
-        <img class="rounded max-w-full mb-4" src="{{ . }}" alt="{{ $title }}" />
-        {{ end -}}
+{{ $tagContext := "" }}
+{{ $tagPage := "" }}
+{{ $showTagContext := false }}
+
+<!-- Only show tag context if we came from a tag page (URL parameter) -->
+<!-- The JavaScript will handle this detection -->
+<div id="tag-context-data" style="display: none;">
+  {{ if .Params.tags }}
+    {{ range .Params.tags }}
+      {{ $currentTag := . }}
+      {{ range site.Menus.main }}
+        {{ if and (not .Params.header) (eq .URL (printf "/tags/%s" ($currentTag | urlize))) }}
+          <span data-tag="{{ $currentTag | urlize }}" data-tag-title="{{ (site.GetPage (printf "/tags/%s" ($currentTag | urlize))).Title }}"></span>
         {{ end }}
-        <h3 class="text-lg font-semibold mb-0.5">{{ $title }}</h3>
-        <div
-          class="text-sm {{ if $isCurrentPage }} text-slate-400 {{ else }} text-slate-500 dark:text-slate-400 {{ end }} line-clamp-2">
-          {{ .Summary }}
-        </div>
-      </a>
-      {{ end -}}
-    </div>
-    {{ end -}}
-  </section>
-
-  <div class="overflow-y-auto h-screen w-full">
-    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
-
-      {{ $title := .Params.title }}
-      <h1 class="!mb-2">{{ $title }}</h1>
-
-	  {{ if .Date }}
-      <p class="text-sm text-slate-500 !mb-8"> Published {{ $date }}
-		{{ if ne $lastmod $date}}
-			<br/> Pruned {{ .Lastmod.Format "January 2, 2006" }}
-        {{ end }}
-	  </p>
       {{ end }}
+    {{ end }}
+  {{ end }}
+</div>
 
+<section
+  class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
+lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0" id="sidebar-section" style="opacity: 0;">
+  
+  <!-- Default section behavior (will be replaced by JavaScript if tag context exists) -->
+  {{$Section := .Site.GetPage "section" .Section }}
+  {{ with $Section }}
+  <a href="{{ .Permalink }}" id="section-header-link">
+    <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">{{ .Title }}</h2>
+  </a>
+  {{- partial "search.html" . -}}
+  <div class="space-y-2.5" id="articles-list">
+    {{ range .Data.Pages -}}
+    {{ $isCurrentPage := eq .RelPermalink $permalink }}
+    <a class="article block px-3 py-4 {{ if $isCurrentPage }} bg-slate-900 dark:bg-slate-700 text-slate-50 {{ else }} hover:bg-slate-200 dark:hover:bg-slate-700 {{ end }}"
+      href="{{ .RelPermalink }}">
+      {{ $title := .Params.title }}
       {{ with .Params.images }}
       {{- range first 1 . }}
-      <img class="rounded max-w-full mx-auto mb-4" src="{{ . }}" alt="{{ $title }}" />
+      <img class="rounded max-w-full mb-4" src="{{ . }}" alt="{{ $title }}" />
       {{ end -}}
       {{ end }}
-
-      {{ .Content }}
-    </article>
+      <h3 class="text-lg font-semibold mb-0.5">{{ $title }}</h3>
+      <div
+        class="text-sm {{ if $isCurrentPage }} text-slate-400 {{ else }} text-slate-500 dark:text-slate-400 {{ end }} line-clamp-2">
+        {{ .Summary }}
+      </div>
+    </a>
+    {{ end -}}
   </div>
+  {{ end -}}
+</section>
+
+<div class="overflow-y-auto h-screen w-full">
+  <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+
+    {{ $title := .Params.title }}
+    <h1 class="!mb-2">{{ $title }}</h1>
+
+    {{ if .Date }}
+    <p class="text-sm text-slate-500 !mb-8"> Published {{ $date }}
+      {{ if ne $lastmod $date}}
+        <br/> Pruned {{ .Lastmod.Format "January 2, 2006" }}
+      {{ end }}
+    </p>
+    {{ end }}
+
+    {{ with .Params.images }}
+    {{- range first 1 . }}
+    <img class="rounded max-w-full mx-auto mb-4" src="{{ . }}" alt="{{ $title }}" />
+    {{ end -}}
+    {{ end }}
+
+    {{ .Content }}
+  </article>
+</div>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebarSection = document.getElementById('sidebar-section');
+  const currentPermalink = window.location.pathname;
+  
+  // Check for tag parameter in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const tagParam = urlParams.get('tag');
+  
+  if (tagParam) {
+    // Check if this tag is one of our menu tags
+    const tagContextData = document.getElementById('tag-context-data');
+    const tagSpan = tagContextData.querySelector(`[data-tag="${tagParam}"]`);
+    
+    if (tagSpan) {
+      // Replace sidebar content with tag context
+      const tagTitle = tagSpan.getAttribute('data-tag-title');
+      
+      // Fetch the tag page content
+      fetch(`/tags/${tagParam}/`)
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const tagSidebar = doc.querySelector('section');
+          
+          if (tagSidebar) {
+            sidebarSection.innerHTML = tagSidebar.innerHTML;
+            
+            // Update links to preserve tag context and apply current page styling
+            sidebarSection.querySelectorAll('.article').forEach(function(link) {
+              const url = new URL(link.href, window.location.origin);
+              url.searchParams.set('tag', tagParam);
+              link.href = url.toString();
+              
+              // Check if this is the current page and apply styling
+              const linkPath = new URL(link.href, window.location.origin).pathname;
+              if (linkPath === currentPermalink) {
+                // Remove hover classes and add current page classes
+                link.classList.remove('hover:bg-slate-200', 'dark:hover:bg-slate-700');
+                link.classList.add('bg-slate-900', 'dark:bg-slate-700', 'text-slate-50');
+                
+                // Update the text color of the summary div
+                const summaryDiv = link.querySelector('div.text-sm');
+                if (summaryDiv) {
+                  summaryDiv.classList.remove('text-slate-500', 'dark:text-slate-400');
+                  summaryDiv.classList.add('text-slate-400');
+                }
+              }
+            });
+          }
+          
+          // Show the sidebar
+          sidebarSection.style.opacity = '1';
+        })
+        .catch(error => {
+          console.log('Could not load tag context:', error);
+          // Show default sidebar on error
+          sidebarSection.style.opacity = '1';
+        });
+    } else {
+      // Show default sidebar if tag not found
+      sidebarSection.style.opacity = '1';
+    }
+  } else {
+    // No tag parameter, show default sidebar
+    sidebarSection.style.opacity = '1';
+  }
+});
+</script>
+
 
 {{ end }}

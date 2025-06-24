@@ -48,4 +48,28 @@
       localStorage.setItem(darkModeStateKey, true);
     }
   });
+  function updateNavigationState() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentTag = urlParams.get("tag");
+    const currentPath = window.location.pathname;
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.remove("bg-slate-800", "text-white", "dark:bg-slate-50", "dark:text-slate-800", "dark:selection:bg-slate-400");
+    });
+    let activeItem = null;
+    if (currentTag) {
+      activeItem = document.querySelector(`[data-tag="${currentTag}"]`);
+    } else if (currentPath.startsWith("/articles")) {
+      activeItem = document.querySelector('[data-section="articles"]');
+    } else if (currentPath === "/") {
+      activeItem = document.querySelector('[data-section="home"]');
+    } else if (currentPath.startsWith("/tags/")) {
+      const tagFromPath = currentPath.replace("/tags/", "").replace("/", "");
+      activeItem = document.querySelector(`[data-tag="${tagFromPath}"]`);
+    }
+    if (activeItem && !activeItem.classList.contains("cursor-default")) {
+      activeItem.classList.add("bg-slate-800", "text-white", "dark:bg-slate-50", "dark:text-slate-800", "dark:selection:bg-slate-400");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", updateNavigationState);
+  window.addEventListener("popstate", updateNavigationState);
 })();

@@ -11,7 +11,7 @@
       {{- partial "search.html" . -}}
       <div class="space-y-2.5">
         {{ range .Data.Pages -}}
-        <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="{{ .RelPermalink }}">
+        <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="{{ .RelPermalink }}?tag={{ $.Title | urlize }}">
   
           {{ $title := .Params.title }}
           {{ with .Params.images }}
